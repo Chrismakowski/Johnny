@@ -1,0 +1,25 @@
+---
+title: "Johnny"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+---
+```{r}
+library(Lahman)
+library(sqldf)
+library(ggplot2)
+library(flexdashboard)
+```
+
+```{r setup, include=FALSE}
+query<-"SELECT yearID, HR, playerID, SO from Batting
+WHERE HR>50 and SO<75"
+
+result<-sqldf(query)
+
+ggplot()+
+  geom_point(data=result, aes(x=HR,y=SO),color="purple", size=10)+
+  xlab("Homeruns")+
+  ylab("Strikeouts")+
+  ggtitle("SO's vs HR's")
