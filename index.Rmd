@@ -5,14 +5,20 @@ output:
     orientation: columns
     vertical_layout: fill
 ---
-```{r}
-library(Lahman)
-library(sqldf)
-library(ggplot2)
-library(flexdashboard)
-```
 
 ```{r setup, include=FALSE}
+library(flexdashboard)
+library(sqldf)
+library(Lahman)
+library(ggplot2)
+```
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Scatterplot
+
+```{r}
 query<-"SELECT yearID, HR, playerID, SO from Batting
 WHERE HR>50 and SO<75"
 
@@ -23,3 +29,5 @@ ggplot()+
   xlab("Homeruns")+
   ylab("Strikeouts")+
   ggtitle("SO's vs HR's")
+```
+
